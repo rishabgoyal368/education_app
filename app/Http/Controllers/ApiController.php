@@ -128,7 +128,7 @@ class ApiController extends Controller
             $email = $request['email'];
             try {
                 if (!filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-                    Mail::send('emails.user_forgot_password_api', ['name' => ucfirst($check_email_exists['first_name']) . ' ' . $check_email_exists['last_name'], 'otp' => $check_email_exists['secret_keyF']], function ($message) use ($email, $project_name) {
+                    Mail::send('emails.user_forgot_password_api', ['name' => ucfirst($check_email_exists['first_name']) . ' ' . $check_email_exists['last_name'], 'otp' => $check_email_exists['secret_key']], function ($message) use ($email, $project_name) {
                         $message->to($email, $project_name)->subject('User Forgot Password');
                     });
                 }
@@ -189,8 +189,7 @@ class ApiController extends Controller
             [
                 'first_name' => 'required',
                 'last_name'     => 'required',
-                'profile_image'     => 'required',
-                'email'     => 'required',
+                'profile_pic'     => 'required',
                 'mobile_number' => 'required|numeric'
             ]
         );
@@ -205,12 +204,11 @@ class ApiController extends Controller
         $user =   auth()->userOrFail();
         $user->first_name         = $data['first_name'];
         $user->last_name          = $data['last_name'];
-        $user->email              = $data['email'];
         $user->mobile_number     = $data['mobile_number'];
-        if ($data['profile_image']) {
-            $fileName = time() . '.' . $request->profile_image->extension();
-            $request->profile_image->move(public_path('uploads'), $fileName);
-            $user->profile_image     = $fileName;
+        if ($data['profile_pic']) {
+            $fileName = time() . '.' . $request->profile_pic->extension();
+            $request->profile_pic->move(public_path('uploads'), $fileName);
+            $user->profile_pic     = $fileName;
         }
         $user->save();
         return response()->json(['message' => 'Profile updated successfully', 'code' => 200]);
@@ -221,15 +219,4 @@ class ApiController extends Controller
         Auth::guard('api')->logout();
         return response()->json(['message' => 'logout successfully', 'code' => 200]);
     }
-
-
-    // public function respondWithToken($token)
-    // {
-    //     return response()->json([
-    //         'access_token' => $token,
-    //         'token_type' => 'bearer',
-    //         'code' => 200,
-    //         'expire_in' => auth()->factory()->getTTL() * 60
-    //     ]);
-    // }
 }
