@@ -30,6 +30,15 @@
         </ul>
     </li>
 
+    <li class="menu-item">
+        <a href="{{ url('admin/category') }}" class=" menu-link">
+            <span class="menu-label">
+                <span class="menu-name">Category Management</span>
+
+            </span>
+        </a>
+    </li>
+
 
 
 </ul>
