@@ -45,26 +45,10 @@ Route::group(['prefix'=>'admin','middleware'=>'CheckAdminAuth'],function()
     Route::match(['get','post'],'/reset-password','AuthController@reset_password');
     Route::match(['get','post'],'/my-profile','AuthController@my_profile');
 
-    //-----------------Actor-----------------------------
-
-    // Route::match(['get','post'],'/member','Admin\ActorManagementController@index');
-    // Route::match(['get','post'],'/member/add','Admin\ActorManagementController@add');
-    // Route::match(['get','post'],'/member/edit/{id}','Admin\ActorManagementController@edit');
-    // Route::match(['get','post'],'/member/delete/{id}','Admin\ActorManagementController@delete');
-
-    //-----------------Actor-----------------------------
-
-    //-------------------Movie---------------------------
-    Route::match(['get','post'],'/movie','Admin\MovieController@index');
-
-    //-------------------Movie---------------------------
-
-
-    //-------------------Subscription---------------------------
-    Route::match(['get','post'],'/subscription-list','Admin\SubscriptionController@index');
- 
-    //-------------------Subscription---------------------------
-    // define('AdminProfileBasePath', 'public/assets/img');
-    // define('AdminProfileImgPath', asset('public/assets/img'));
-
+    //===================category management=========================
+    Route::match(['get','post'],'/category','CategoryController@index');
+    Route::match(['get','post'],'/category/add','CategoryController@add');
+    // Route::match(['get','post'],'/category/edit/{id}','CategoryController@edit');
+    // Route::match(['get','post'],'/category/delete/{id}','CategoryController@delete');
+    //===================category management=========================
 });
