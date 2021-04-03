@@ -13,31 +13,53 @@
                     </h4>
                 </div>
                 <div class="col-2 text-white p-t-40 p-b-90">
-                    <a href="#" class="add_record">Add Category</a>
+                    <a href="{{ url('admin/category/add')}}" class="add_record">Add Category</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+    <div class="container  pull-up">
+        <div class="row">
+            <div class="col-12">
                 <div class="card">
-                    <div class="card-header">Categories</div>
                     <div class="card-body">
-                        @foreach($parentCategories as $category)
-                            <ul>
-                                <li>{{$category->title}}</li>
-                                @if(count($category->subcategory))
-                                     @include('Admin.category.subCategoryList',['subcategories' => $category->subcategory])
-                                @endif 
-                            </ul>
-                        @endforeach
+                        <div class="table-responsive p-t-10">
+                            <table id="example" class="table " style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Title</th>
+                                        <th>Parent Id</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse($parentCategories as $category)
+                                    <tr>
+                                        <td>{{ $category['id']}}</td>
+                                        <td>{{ $category['title']}}</td>
+                                        <td>@if($category['parent_id'] == 0) - @else {{ $category['parent_id']}} @endif</td>
+                                        <td>
+                                            <a href="#" title="Edit"><i class="fa fa-edit"></i></a>
+                                            <a href="#" class="del_btn" title="Delete"><i class="fa fa-trash"></i></a>
+
+                                        </td>
+                                        
+                                    </tr>
+                                    @empty
+                                        <tr>
+                                            <td>No data Found!</td>
+                                        </tr>
+                                    @endforelse
+                                    
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
 
 @endsection()

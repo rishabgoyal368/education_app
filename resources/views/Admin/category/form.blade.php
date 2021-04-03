@@ -14,7 +14,6 @@
             </div>
         </div>
     </div>
-
     <div class="container  pull-up">
         <div class="row">
             <div class="col-lg-12">
@@ -31,23 +30,23 @@
                             
                             <div class="form-row">
                                 <div class="form-group col-md-12">
-                                    <label for="inputPassword4">Status</label>
-                                
-                                    <select name="status" class="form-control js-select2" required>
-                                        <option selected disabled>Select Status</option>
-                                        <li></li>
-                                        @foreach($parentCategories as $category)
-                                            <option value="{{$category->id}}" data-id="0">{{$category->title}}</option>
-                                                @if(count($category->subcategory))
-                                                    - @include('Admin.category.form_subCategoryList',['subcategories' => $category->subcategory, 'dataLevel'=>1])
-                                                @endif 
-                                        @endforeach                                      
+                                    <label for="inputPassword4">Category</label>
+                                   <select name="category" class="form-control js-select2" id="">     <option selected disabled>Select</option>
+                                        @foreach ($parentCategories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                            @if (count($category->childs) > 0)
+                                                @include('Admin.category.subcategories', ['subcategories' => $category->childs, 'parent' => $category->title])
+                                            @endif
+
+                                        @endforeach
                                     </select>
-                                </div>
+
+                         
+                                 </div>
                             </div>
                             <div class="form-group">
                                 <input type="submit" value="Submit" class="btn btn-primary">
-                                <a href="{{url('/admin/manage-users')}}" class="btn btn-info">Back</a>
+                                <a href="{{url('/admin/category')}}" class="btn btn-info">Back</a>
                             </div>
                         </form>
                     </div>
