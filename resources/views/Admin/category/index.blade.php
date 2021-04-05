@@ -39,10 +39,10 @@
                                     <tr>
                                         <td>{{ $category['id']}}</td>
                                         <td>{{ $category['title']}}</td>
-                                        <td>@if($category['parent_id'] == 0) - @else {{ $category['parent_id']}} @endif</td>
+                                        <td>@if($category['parent'] == null ) - @else  {{ $category['parent']['title'] }}  @endif</td>
                                         <td>
-                                            <a href="#" title="Edit"><i class="fa fa-edit"></i></a>
-                                            <a href="#" class="del_btn" title="Delete"><i class="fa fa-trash"></i></a>
+                                            <a href="{{ url('/admin/category/edit/'.$category['id']) }}" title="Edit"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ url('/admin/category/delete/'.$category['id'])}}" class="del_btn" title="Delete"><i class="fa fa-trash"></i></a>
 
                                         </td>
                                         

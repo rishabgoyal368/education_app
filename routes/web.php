@@ -48,7 +48,7 @@ Route::group(['prefix'=>'admin','middleware'=>'CheckAdminAuth'],function()
     //===================category management=========================
     Route::match(['get','post'],'/category','CategoryController@index');
     Route::match(['get','post'],'/category/add','CategoryController@add');
-    // Route::match(['get','post'],'/category/edit/{id}','CategoryController@edit');
-    // Route::match(['get','post'],'/category/delete/{id}','CategoryController@delete');
+    Route::match(['get','post'],'/category/edit/{id}','CategoryController@edit');
+    Route::match(['get','post'],'/category/delete/{id}','CategoryController@delete');
     //===================category management=========================
 });
