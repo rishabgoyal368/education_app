@@ -39,6 +39,13 @@
         </a>
     </li>
 
+     <li class="menu-item">
+        <a href="{{ url('admin/chapter') }}" class=" menu-link">
+            <span class="menu-label">
+                <span class="menu-name">Chapter Management</span>
+            </span>
+        </a>
+    </li>
 
 
 </ul>
