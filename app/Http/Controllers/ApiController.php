@@ -46,16 +46,6 @@ class ApiController extends Controller
         $user->password         = str_replace("$2y$", "$2a$", $hash_password);
         $user->status             = 'Active';
         if ($user->save()) {
-            $project_name = env('App_name');
-            $email = $data['email'];
-            try {
-                if (!filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-                    Mail::send('emails.user_register_success', ['name' => ucfirst($user['first_name']) . ' ' . $user['last_name'], 'email' => $email, 'password' => $data['password']], function ($message) use ($email, $project_name) {
-                        $message->to($email, $project_name)->subject('User registered successfully');
-                    });
-                }
-            } catch (Exception $e) {
-            }
             return response()->json(['message' => 'User register Successfuly', 'data' => $user, 'code' => 200]);
         } else {
             return response()->json(['message' => 'Something went wrong', 'code' => 400]);
