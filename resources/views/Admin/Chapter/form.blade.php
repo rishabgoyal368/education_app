@@ -1,7 +1,7 @@
 <?php
     if (isset($chapter_details)) {
         $title = 'Edit';
-        $action = url('admin/chapter/edit/' . $chapter_details['id']);
+        $action = url('admin/chapter/edit/' . @$chapter_details['id']);
     } else {
         $title = 'Add';
         $action = url('admin/chapter/add');
@@ -31,17 +31,18 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputEmail4">Chapter Name</label>
-                                    <input type="text" class="form-control" name="chapter_name" id="chapter_name" placeholder="Chapter Name*" value="{{ @$chapter_details['chapter_name'] }}" required="">
+                                    <input type="text" class="form-control" name="chapter_name" id="chapter_name" placeholder="Chapter Name*" value="{{ @$chapter_details['chapter_name'] }}" >
                                 </div>
                             </div>
-                            
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputEmail4">Paper</label>
-                                    <select name="paper_id" id="paper" class="form-control" required>
+                                    <select name="paper_id" id="paper" class="form-control" >
                                         <option disabled selected>Select</option>
                                         @foreach($paper_list as $papers)
-                                            <option value="{{ $papers['id'] }}">{{ $papers['title'] }}</option>
+                                            <option value="{{ $papers['id'] }}" <?php if($papers['id'] == @$chapter_details['paper_id']){
+                                                echo "selected";
+                                            } ?>>{{ $papers['title'] }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -50,8 +51,12 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputEmail4">Class</label>
-                                    <select name="class_id" id="class" class="form-control" required>
-                                        
+                                    <select name="class_id" id="class" class="form-control" >
+                                    @if(@$class_list)
+                                        @foreach($class_list as $classes)
+                                            <option  value="{{ $classes['id']}}" <?php if(@$classes['id'] == $chapter_details['class_id']){echo "selected";} ?>>{{ $classes['title']}}</option>
+                                        @endforeach
+                                    @endif
                                     </select>
                                 </div>
                             </div>
@@ -60,12 +65,14 @@
                                 <div class="form-group col-md-6">
                                     <label for="inputEmail4">Subject</label>
                                     <select name="subject_id" id="subject" class="form-control" required>
-                                        
+                                        @if(@$subject_list)
+                                            @foreach($subject_list as $subjects)
+                                                <option  value="{{ $subjects['id']}}" <?php if(@$subjects['id'] == $chapter_details['subject_id']){echo "selected";} ?>>{{ $subjects['title']}}</option>
+                                            @endforeach
+                                        @endif
                                     </select>
                                 </div>
-                            </div>
-                          
-                         
+                            </div>             
                             <div class="form-group">
                                 <input type="submit" value="Submit" class="btn btn-primary">
                                 <a href="{{url('/admin/chapter')}}" class="btn btn-info">Back</a>
@@ -79,7 +86,7 @@
 
     </div>
 </section>
-<!-- <script type="text/javascript">
+<script type="text/javascript">
     $('#add_edit_chapter').validate({
         rules: {
             chapter_name: {
@@ -98,7 +105,7 @@
             },
         },
     });
-</script> -->
+</script>
 <script type="text/javascript">
     $(document).on('change','#paper',function(){
         var paper_id = $(this).val();

@@ -27,9 +27,34 @@ class ChapterController extends Controller
 				return redirect('/admin/chapter')->with('error','Something went wrong, Please try again later.');
 			}
 		}
+		$class_list   = "";
+		$subject_list = "";
 		$paper_list  		= Category::where('parent_id',0)->get()->toArray();
-        return view('Admin.Chapter.form',compact('paper_list'));
+        return view('Admin.Chapter.form',compact('paper_list','class_list','subject_list'));
 	}
+
+	public function edit(Request $request, $id){
+		if($request->isMethod('post')){
+			$data = $request->all();
+			$create_chapter = Chapter::where('id',$id)->Update([
+											'chapter_name'	=>	$data['chapter_name'],
+											'paper_id'		=>	$data['paper_id'],
+											'class_id'		=>	$data['class_id'],
+											'subject_id'	=>	$data['subject_id'],
+												]);
+			if($create_chapter){
+				return redirect()->back()->with('success','Chapter updated successfully');
+			}else{
+				return redirect('/admin/chapter')->with('error','Something went wrong, Please try again later.');
+			}
+		}
+		$chapter_details  	= Chapter::with('paper','subject','class')->where('id',$id)->first();
+		$class_list  		= Category::where('parent_id',$chapter_details['paper_id'])->get()->toArray();
+		$subject_list  		= Category::where('parent_id',$chapter_details['class_id'])->get()->toArray();
+		$paper_list  		= Category::where('parent_id',0)->get()->toArray();
+        return view('Admin.Chapter.form',compact('paper_list','chapter_details','class_list','subject_list'));
+	}
+
 
 	public function delete(Request $request, $id){
 		$delete_chapter = Chapter::where('id',$id)->delete();

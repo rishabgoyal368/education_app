@@ -45,7 +45,9 @@
                                         <td>{{ ucfirst($chapters['class']['title']) }}</td>
                                         <td>{{ ucfirst($chapters['subject']['title']) }}</td>
                                         <td>
+                                            <a href="{{ url('/admin/chapter/edit/'.$chapters['id'])}}"  title="Edit"><i class="fa fa-edit"></i></a>
                                             <a href="{{ url('/admin/chapter/delete/'.$chapters['id'])}}" class="del_btn" title="Delete"><i class="fa fa-trash"></i></a>
+
 
                                         </td>
                                         
