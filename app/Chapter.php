@@ -25,4 +25,9 @@ class Chapter extends Model
         return $this->hasOne(Category::class, 'id', 'class_id');
     }
 
+
+    public function questions_list(){
+        return $this->hasMany(Question::class, 'chapter_id', 'id');
+    }
+
 }

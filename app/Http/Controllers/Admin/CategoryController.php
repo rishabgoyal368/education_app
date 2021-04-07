@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Category;
 
@@ -9,7 +9,6 @@ class CategoryController extends Controller
 {
     public function index(){
         $parentCategories = Category::with('parent')->orderby('id','asc')->get()->toArray();
-        // dd($parentCategories);
         return view('Admin.category.index',compact('parentCategories'));
     }
 

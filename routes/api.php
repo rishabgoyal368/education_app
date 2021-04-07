@@ -21,6 +21,11 @@ Route::post('/reset-password','ApiController@reset_password');
 Route::get('/get-profile','ApiController@profile'); 
 Route::post('/update-profile','ApiController@updateProfile'); 
 
-//-------------------Catgory------------------
+//===================Catgory==========================
 Route::post('/category','Api\CategoryController@category_list');
-//-------------------Catgory------------------
+//===================Catgory==========================
+
+
+//===================chapter==========================
+Route::post('/question-list','Api\CategoryController@question_list');
+//===================chapter==========================
