@@ -1,7 +1,15 @@
  @extends('Admin.Layout.app')
 @section('title', ucfirst($question_list['chapter_name']))
 @section('content')
-
+<style type="text/css">
+    .set-question-ui{
+        border: 22px solid;
+        padding: 18px;  
+    }
+    .edit-delete-btn-setting{
+        float: right;
+    }
+</style>
 <section class="admin-content">
     <div class="bg-dark">
         <div class="container  m-b-30">
@@ -27,12 +35,13 @@
                         <div class="table-responsive p-t-10">
                             @if(count($question_list['questions_list'])>0)
                             @foreach($question_list['questions_list'] as $key=>$questions)
-                                <div class="form-row">
+                                <div class="form-row set-question-ui">
                                     <div class="form-group col-md-12">
                                         <h5>
                                             <label for="inputEmail4">Question {{ $key+1}} . </label>
                                             {{ ucfirst($questions['question']) }}</h5>
                                     </div>
+                                   
                                     <div class="form-group col-sm-12">
                                         <div class="row">
                                             <div class="col-sm-4">
@@ -50,13 +59,13 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-4">
-                                                </h6>
+                                                <h6>
                                                     <label for="inputEmail4"> 3) </label>
                                                     {{ ucfirst($questions['option_3']) }}
                                                 </h6>
                                             </div>
                                             <div class="col-sm-4">
-                                                </h6>
+                                                <h6>
                                                     <label for="inputEmail4"> 4) </label>
                                                     {{ ucfirst($questions['option_4']) }}
                                                 </h6>
@@ -95,6 +104,10 @@
                                                 <div class="faq_question">
                                                     <buton type="button" class="btn btn-primary show_que view_ans" >Show Answer</buton>
                                                 </div>
+                                            </div>
+                                            <div class="edit-delete-btn-setting">
+                                                <a href="{{ url('admin/chapter/question/edit/'.$questions['id'])}}?chapter_id={{ $chapter_id }}" title="Edit Question"><i class="fa fa-edit"></i></a>
+                                                <a href="{{ url('admin/chapter/question/delete/'.$questions['id'])}}" class="del_btn" title="Delete Question"><i class="fa fa-trash"></i></a>
                                             </div>
                                         </h5>
                                     </div>

@@ -51,13 +51,24 @@ class CategoryController extends Controller
     }
 
     public function delete(Request $request, $id){
-        $delete = Category::with('childs')->where('id',$id)->first();
+        $delete = Category::with('childs','chapter_list')->where('id',$id)->first();
+      
         if(count($delete['childs'])<=0){
+            if(count($delete['chapter_list'])<=0){
+                $delete->delete();
+                return redirect()->back()->with('success','Category Deleted Successfully');
+            }else{
+                return redirect()->back()->with('error','To delete Category first delete their Chapters.');
+            }
             $delete->delete();
             return redirect()->back()->with('success','Category Deleted Successfully');
         }else{
             return redirect()->back()->with('error','To delete category first delete their child first.');
         }
+
+        
+    
+    
      
     }
 }

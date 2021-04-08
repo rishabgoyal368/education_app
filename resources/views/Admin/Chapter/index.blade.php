@@ -1,4 +1,4 @@
- @extends('Admin.Layout.app')
+@extends('Admin.Layout.app')
 @section('title', 'Manage Chapter')
 @section('content')
 
@@ -47,7 +47,7 @@
                                         <td>
                                             <a href="{{ url('/admin/chapter/edit/'.$chapters['id'])}}"  title="Edit"><i class="fa fa-edit"></i></a>
                                             <a href="{{ url('/admin/chapter/delete/'.$chapters['id'])}}" class="del_btn" title="Delete"><i class="fa fa-trash"></i></a>
-                                            <a href="{{ url('/admin/chapter/question/'.$chapters['id'])}}"  title="Questions"><i class="fa fa-question"></i></a>
+                                            <a href="{{ url('/admin/chapter/question/'.$chapters['id'])}}"  title="Questions"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
                                         </td>
                                         
                                     </tr>

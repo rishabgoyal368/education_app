@@ -65,6 +65,8 @@ Route::group(['prefix'=>'admin','middleware'=>'CheckAdminAuth'],function()
     //=================Question managaement=========================
     Route::match(['get','post'],'/chapter/question/{chapter_id}','Admin\QuestionController@question_list');
     Route::match(['get','post'],'/chapter/question/add/{chapter_id}','Admin\QuestionController@add_question');
+    Route::match(['get','post'],'/chapter/question/edit/{question_id}','Admin\QuestionController@edit_question');
+    Route::match(['get','post'],'/chapter/question/delete/{question_id}','Admin\QuestionController@delete');
     //=================Question managaement=========================
 
     define('Common_Error','Something went wrong, Please try again later.');

@@ -1,7 +1,7 @@
 <?php
-    if (isset($chapter_details)) {
+    if (isset($question_details)) {
         $title = 'Edit';
-        $action = url('admin/chapter/edit/' . @$chapter_details['id']);
+        $action = url('admin/chapter/question/edit/' . @$question_details['id'].'?chapter_id='.$chapter_id);
     } else {
         $title = 'Add';
         $action = url('admin/chapter/question/add/'.$chapter_id);
@@ -40,27 +40,27 @@
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label for="inputEmail4">Question</label>
-                                    <textarea class="form-control" cols="6" rows="6" name="question"></textarea>
+                                    <textarea class="form-control" cols="6" rows="6" name="question">{{ @$question_details['question']}}</textarea>
                                 </div>
                                 <div class="form-group col-sm-12">
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <label for="inputEmail4">Option 1</label>
-                                            <input type="text" class="form-control" name="option_1" value="">
+                                            <input type="text" class="form-control" name="option_1" value="{{ @$question_details['option_1']}}">
                                         </div>
                                         <div class="col-sm-4">
                                             <label for="inputEmail4">Option 2</label>
-                                            <input type="text" class="form-control" name="option_2" value="">
+                                            <input type="text" class="form-control" name="option_2" value="{{ @$question_details['option_2']}}">
                                         </div>    
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <label for="inputEmail4">Option 3</label>
-                                            <input type="text" class="form-control" name="option_3" value="">
+                                            <input type="text" class="form-control" name="option_3" value="{{ @$question_details['option_3']}}">
                                         </div>
                                         <div class="col-sm-4">
                                             <label for="inputEmail4">Option 4</label>
-                                            <input type="text" class="form-control" name="option_4" value="">
+                                            <input type="text" class="form-control" name="option_4" value="{{ @$question_details['option_4']}}">
                                         </div>    
                                     </div>
                                 </div>
@@ -69,21 +69,21 @@
                                     <div class="row">
                                         <div class="col-sm-4 set-pos-radio">
                                             <label for="inputEmail4">Option 1</label>
-                                            <input type="radio" class="form-control radio_btn_adj" name="correct_option" value="option_1">
+                                            <input type="radio" class="form-control radio_btn_adj" name="correct_option" value="option_1" <?php if($question_details['correct_option'] == 'option_1'){echo "checked";} ?>>
                                         </div>
                                         <div class="col-sm-4 set-pos-radio">
                                             <label for="inputEmail4">Option 2</label>
-                                            <input type="radio" class="form-control radio_btn_adj" name="correct_option" value="option_2">
+                                            <input type="radio" class="form-control radio_btn_adj" name="correct_option" value="option_2" <?php if($question_details['correct_option'] == 'option_2'){echo "checked";} ?>>
                                         </div>    
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-4 set-pos-radio">
                                             <label for="inputEmail4">Option 3</label>
-                                            <input type="radio" class="form-control radio_btn_adj" name="correct_option" value="option_3">
+                                            <input type="radio" class="form-control radio_btn_adj" name="correct_option" value="option_3" <?php if($question_details['correct_option'] == 'option_3'){echo "checked";} ?>>
                                         </div>
                                         <div class="col-sm-4 set-pos-radio">
                                             <label for="inputEmail4">Option 4</label>
-                                            <input type="radio" class="form-control radio_btn_adj" name="correct_option" value="option_4">
+                                            <input type="radio" class="form-control radio_btn_adj" name="correct_option" value="option_4" <?php if($question_details['correct_option'] == 'option_4'){echo "checked";} ?>>
                                         </div>    
                                     </div>
                                     <label id="correct_option-error" class="error" for="correct_option"></label>
