@@ -117,9 +117,9 @@
             var text =$(this).text(); 
             if(text == 'Show Answer'){
                 ths.text('Hide Answer');
-                ths.closest('.faq_container').find('.faq').slideDown('fast');
+                ths.closest('.faq_container').find('.faq').slideDown('slow');
             }else{
-                ths.closest('.faq_container').find('.faq').slideUp('fast');
+                ths.closest('.faq_container').find('.faq').slideUp('slow');
                 ths.text('Show Answer');
             }
         })

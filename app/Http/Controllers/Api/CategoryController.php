@@ -53,7 +53,8 @@ class CategoryController extends Controller
             return response()->json($response);
         }
         try{
-            $question_list = Question::where('chapter_id',$data['chapter_id'])->get()->toArray();
+            $paginate = env('Paginate');
+            $question_list = Question::where('chapter_id',$data['chapter_id'])->paginate((int) $paginate);
             $response['code']       = 200;
             $response['status']     = 'success';
             $response['data']       = $question_list;
