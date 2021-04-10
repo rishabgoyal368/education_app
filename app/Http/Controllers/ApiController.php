@@ -22,11 +22,11 @@ class ApiController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'first_name' => 'required',
-                'last_name' => 'required',
                 'email' => 'required|email|unique:users,email,Null,id,deleted_at,NULL',
                 'password' => 'required',
-                'mobile_number' => 'required|numeric|unique:users,mobile_number',
+                'first_name' => 'required',
+                // 'last_name' => 'required',
+                // 'mobile_number' => 'required|numeric|unique:users,mobile_number',
             ]
         );
 
@@ -39,9 +39,9 @@ class ApiController extends Controller
 
         $user = new User();
         $user->first_name         = $data['first_name'];
-        $user->last_name          = $data['last_name'];
+        $user->last_name          = '.';
         $user->email              = $data['email'];
-        $user->mobile_number     = $data['mobile_number'];
+        $user->mobile_number     = '.';
         $hash_password          = Hash::make($data['password']);
         $user->password         = str_replace("$2y$", "$2a$", $hash_password);
         $user->status             = 'Active';
