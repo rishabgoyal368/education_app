@@ -48,7 +48,17 @@ Route::group(['prefix'=>'admin','middleware'=>'CheckAdminAuth'],function()
     //===================category management=========================
     Route::match(['get','post'],'/category','CategoryController@index');
     Route::match(['get','post'],'/category/add','CategoryController@add');
-    // Route::match(['get','post'],'/category/edit/{id}','CategoryController@edit');
-    // Route::match(['get','post'],'/category/delete/{id}','CategoryController@delete');
+    Route::match(['get','post'],'/category/edit/{id}','CategoryController@edit');
+    Route::match(['get','post'],'/category/delete/{id}','CategoryController@delete');
     //===================category management=========================
+
+
+    //===================Chapter management=========================
+    Route::match(['get','post'],'/chapter','ChapterController@index');
+    Route::match(['get','post'],'/chapter/add','ChapterController@add');
+    Route::match(['get','post'],'/chapter/edit/{id}','ChapterController@edit');
+    Route::match(['get','post'],'/chapter/delete/{id}','ChapterController@delete');
+    Route::post('/paper-change','ChapterController@change_paper');
+    Route::post('/class-change','ChapterController@change_class');
+    //===================Chapter management=========================
 });
