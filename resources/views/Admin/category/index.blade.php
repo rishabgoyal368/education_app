@@ -35,9 +35,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse($parentCategories as $category)
+                                    @forelse($parentCategories as $key=>$category)
                                     <tr>
-                                        <td>{{ $category['id']}}</td>
+                                        <td>{{ $key+1 }}</td>
                                         <td>{{ $category['title']}}</td>
                                         <td>@if($category['parent'] == null ) - @else  {{ $category['parent']['title'] }}  @endif</td>
                                         <td>

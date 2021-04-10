@@ -46,6 +46,13 @@
             </span>
         </a>
     </li>
-
+    
+    <li class="menu-item">
+        <a href="{{ url('admin/subscription-list') }}" class=" menu-link">
+            <span class="menu-label">
+                <span class="menu-name">Subscription Management</span>
+            </span>
+        </a>
+    </li>
 
 </ul>

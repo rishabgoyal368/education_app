@@ -20,4 +20,8 @@ class Category extends Model
     public function parent(){
         return $this->hasOne(Category::class, 'id', 'parent_id');
     }
+
+    public function chapter_list(){
+        return $this->hasMany(Chapter::class, 'subject_id', 'id');
+    }
 }
