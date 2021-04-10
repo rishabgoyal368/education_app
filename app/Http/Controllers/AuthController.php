@@ -10,6 +10,17 @@ use Auth;
 class AuthController extends Controller
 {
     public function login(Request $request){
+		//  Admin::create([
+        //     'name' => 'Rishab Goyal',
+        //     'user_name' => 'Rishab Goyal',
+        //     'email' => 'rishabtest01@yopmail.com',
+        //     'profile_pic' => 'test',
+        //     // 'role' => 'admin',
+        //     // 'status' => 'active',
+        //     // 'created_by' => '0',
+        //     // 'job' => '0',
+        //     'password' => Hash::make('1234'),
+        // ]);
 		
     	if(Auth::guard('admin')->check()) {
             return redirect('admin/home');

@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->longtext('address')->nullable();
             $table->string('profile_pic')->nullable();
             $table->string('device_token')->nullable();
-            $table->Integer('mobile_number')->nullable();
+            $table->string('mobile_number')->nullable();
             $table->string('status')->nullable();
             $table->string('deleted_at')->nullable();
             $table->timestamps();
