@@ -46,19 +46,38 @@ Route::group(['prefix'=>'admin','middleware'=>'CheckAdminAuth'],function()
     Route::match(['get','post'],'/my-profile','AuthController@my_profile');
 
     //===================category management=========================
-    Route::match(['get','post'],'/category','CategoryController@index');
-    Route::match(['get','post'],'/category/add','CategoryController@add');
-    Route::match(['get','post'],'/category/edit/{id}','CategoryController@edit');
-    Route::match(['get','post'],'/category/delete/{id}','CategoryController@delete');
+    Route::match(['get','post'],'/category','Admin\CategoryController@index');
+    Route::match(['get','post'],'/category/add','Admin\CategoryController@add');
+    Route::match(['get','post'],'/category/edit/{id}','Admin\CategoryController@edit');
+    Route::match(['get','post'],'/category/delete/{id}','Admin\CategoryController@delete');
     //===================category management=========================
 
 
     //===================Chapter management=========================
-    Route::match(['get','post'],'/chapter','ChapterController@index');
-    Route::match(['get','post'],'/chapter/add','ChapterController@add');
-    Route::match(['get','post'],'/chapter/edit/{id}','ChapterController@edit');
-    Route::match(['get','post'],'/chapter/delete/{id}','ChapterController@delete');
-    Route::post('/paper-change','ChapterController@change_paper');
-    Route::post('/class-change','ChapterController@change_class');
+    Route::match(['get','post'],'/chapter','Admin\ChapterController@index');
+    Route::match(['get','post'],'/chapter/add','Admin\ChapterController@add');
+    Route::match(['get','post'],'/chapter/edit/{id}','Admin\ChapterController@edit');
+    Route::match(['get','post'],'/chapter/delete/{id}','Admin\ChapterController@delete');
+    Route::post('/paper-change','Admin\ChapterController@change_paper');
+    Route::post('/class-change','Admin\ChapterController@change_class');
     //===================Chapter management=========================
+
+    //=================Question managaement=========================
+    Route::match(['get','post'],'/chapter/question/{chapter_id}','Admin\QuestionController@question_list');
+    Route::match(['get','post'],'/chapter/question/add/{chapter_id}','Admin\QuestionController@add_question');
+    Route::match(['get','post'],'/chapter/question/edit/{question_id}','Admin\QuestionController@edit_question');
+    Route::match(['get','post'],'/chapter/question/delete/{question_id}','Admin\QuestionController@delete');
+    //=================Question managaement=========================
+
+    //=================Subcription Management=======================
+    Route::match(['get','post'],'/subscription-list','Admin\SubscriptionController@index');
+    Route::match(['get','post'],'/subscription-list/add','Admin\SubscriptionController@add');
+    Route::match(['get','post'],'/subscription-list/edit/{id}','Admin\SubscriptionController@edit');
+    Route::match(['get','post'],'/subscription-list/delete/{id}','Admin\SubscriptionController@delete');
+    Route::match(['get','post'],'/subscription-list/validate/name','Admin\SubscriptionController@validate_name');
+    //=================Subcription Management=======================
+    
+
+    define('Common_Error','Something went wrong, Please try again later.');
+    
 });
