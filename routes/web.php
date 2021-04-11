@@ -77,6 +77,10 @@ Route::group(['prefix'=>'admin','middleware'=>'CheckAdminAuth'],function()
     Route::match(['get','post'],'/subscription-list/validate/name','Admin\SubscriptionController@validate_name');
     //=================Subcription Management=======================
     
+    //=================Report Management =============================
+    Route::match(['get','post'],'/report-list','Admin\ReportController@index'); 
+    Route::match(['get','post'],'/report-list/details','Admin\ReportController@details'); 
+    //=================Report Management =============================
 
     define('Common_Error','Something went wrong, Please try again later.');
     

@@ -15,17 +15,26 @@ class QuestionController extends Controller
 
     public function add_question(Request $request, $chapter_id){
     	if($request->isMethod('post')){
-    		$data = $request->all();
-    		$add_question = Question::Create([
-    										'question'		=>$data['question'],
-									        'option_1'		=>$data['option_1'],
-									        'option_2'		=>$data['option_2'],
-									        'option_3'		=>$data['option_3'],
-									        'option_4'		=>$data['option_4'],
-									        'correct_option'=>$data['correct_option'],
-									        'chapter_id'	=>$data['chapter_id']
-    										]);
-    		if($add_question){
+    		$data                         = $request->all();
+    		$add_question                 = new Question;
+			$add_question->question		  = $data['question'];
+	        $add_question->option_1		  = $data['option_1'];
+	        $add_question->option_2		  = $data['option_2'];
+	        $add_question->option_3		  = $data['option_3'];
+	        $add_question->option_4		  = $data['option_4'];
+            $add_question->correct_option = $data['correct_option'];
+            if($data['correct_option'] == 'option_1'){
+                $correct_answer = $data['option_1'];
+            }elseif($data['correct_option'] == 'option_2'){
+                $correct_answer = $data['option_2'];
+            }elseif($data['correct_option'] == 'option_3'){
+                $correct_answer = $data['option_3'];
+            }elseif($data['correct_option'] == 'option_4'){
+                $correct_answer = $data['option_4'];
+            }
+	        $add_question->correct_answer = $correct_answer;
+	        $add_question->chapter_id	  = $data['chapter_id'];
+    		if($add_question->save()){
     			return redirect('admin/chapter/question/'.$chapter_id)->with('success','Question added successfully');
     		}else{
     			return redirect('admin/chapter/question/'.$chapter_id)->with('error','Common_Error');
@@ -37,18 +46,26 @@ class QuestionController extends Controller
     public function edit_question(Request $request, $question_id){
         $chapter_id = $_GET['chapter_id'];
         if($request->isMethod('post')){
-            $data = $request->all();
-            // dd($data);
-            $edit_question = Question::where('id',$question_id)->Update([
-                                            'question'      =>$data['question'],
-                                            'option_1'      =>$data['option_1'],
-                                            'option_2'      =>$data['option_2'],
-                                            'option_3'      =>$data['option_3'],
-                                            'option_4'      =>$data['option_4'],
-                                            'correct_option'=>$data['correct_option'],
-                                            'chapter_id'    =>$data['chapter_id']
-                                            ]);
-            if($edit_question){
+            $data                          = $request->all();
+            $edit_question                 = Question::find($question_id);
+            $edit_question->question       = $data['question'];
+            $edit_question->option_1       = $data['option_1'];
+            $edit_question->option_2       = $data['option_2'];
+            $edit_question->option_3       = $data['option_3'];
+            $edit_question->option_4       = $data['option_4'];
+            $edit_question->correct_option = $data['correct_option'];
+            if($data['correct_option'] == 'option_1'){
+                $correct_answer = $data['option_1'];
+            }elseif($data['correct_option'] == 'option_2'){
+                $correct_answer = $data['option_2'];
+            }elseif($data['correct_option'] == 'option_3'){
+                $correct_answer = $data['option_3'];
+            }elseif($data['correct_option'] == 'option_4'){
+                $correct_answer = $data['option_4'];
+            }
+            $edit_question->correct_answer = $correct_answer;
+            $edit_question->chapter_id     = $data['chapter_id'];
+            if($edit_question->save()){
                 return redirect()->back()->with('success','Question edited successfully');
             }else{
                 return redirect('admin/chapter/question/'.$chapter_id)->with('error','Common_Error');
