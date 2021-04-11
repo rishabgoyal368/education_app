@@ -32,8 +32,8 @@ class ApiController extends Controller
 
         if ($validator->fails()) {
             $response['code'] = 404;
-            $response['status'] = $validator->errors()->first();
-            $response['message'] = "missing parameters";
+            $response['status'] = "missing parameters";
+            $response['message'] = $validator->errors()->first();
             return response()->json($response);
         }
 
@@ -64,8 +64,8 @@ class ApiController extends Controller
         );
         if ($validator->fails()) {
             $response['code'] = 404;
-            $response['status'] = $validator->errors()->first();
-            $response['message'] = "missing parameters";
+            $response['status'] = "missing parameters";
+            $response['message'] = $validator->errors()->first();
             return response()->json($response);
         }
         $token = auth()->attempt($credentials);
@@ -100,8 +100,8 @@ class ApiController extends Controller
 
         if ($validator->fails()) {
             $response['code'] = 404;
-            $response['status'] = $validator->errors()->first();
-            $response['message'] = "missing parameters";
+            $response['status'] = "missing parameters";
+            $response['message'] = $validator->errors()->first();
             return response()->json($response);
         }
 
@@ -186,8 +186,8 @@ class ApiController extends Controller
 
         if ($validator->fails()) {
             $response['code'] = 404;
-            $response['status'] = $validator->errors()->first();
-            $response['message'] = "missing parameters";
+            $response['status'] = "missing parameters";
+            $response['message'] = $validator->errors()->first();
             return response()->json($response);
         }
 
