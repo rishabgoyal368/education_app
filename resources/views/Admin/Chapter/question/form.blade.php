@@ -69,21 +69,21 @@
                                     <div class="row">
                                         <div class="col-sm-4 set-pos-radio">
                                             <label for="inputEmail4">Option 1</label>
-                                            <input type="radio" class="form-control radio_btn_adj" name="correct_option" value="option_1" <?php if($question_details['correct_option'] == 'option_1'){echo "checked";} ?>>
+                                            <input type="radio" class="form-control radio_btn_adj" name="correct_option" value="option_1" <?php if(@$question_details['correct_option'] == 'option_1'){echo "checked";} ?>>
                                         </div>
                                         <div class="col-sm-4 set-pos-radio">
                                             <label for="inputEmail4">Option 2</label>
-                                            <input type="radio" class="form-control radio_btn_adj" name="correct_option" value="option_2" <?php if($question_details['correct_option'] == 'option_2'){echo "checked";} ?>>
+                                            <input type="radio" class="form-control radio_btn_adj" name="correct_option" value="option_2" <?php if(@$question_details['correct_option'] == 'option_2'){echo "checked";} ?>>
                                         </div>    
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-4 set-pos-radio">
                                             <label for="inputEmail4">Option 3</label>
-                                            <input type="radio" class="form-control radio_btn_adj" name="correct_option" value="option_3" <?php if($question_details['correct_option'] == 'option_3'){echo "checked";} ?>>
+                                            <input type="radio" class="form-control radio_btn_adj" name="correct_option" value="option_3" <?php if(@$question_details['correct_option'] == 'option_3'){echo "checked";} ?>>
                                         </div>
                                         <div class="col-sm-4 set-pos-radio">
                                             <label for="inputEmail4">Option 4</label>
-                                            <input type="radio" class="form-control radio_btn_adj" name="correct_option" value="option_4" <?php if($question_details['correct_option'] == 'option_4'){echo "checked";} ?>>
+                                            <input type="radio" class="form-control radio_btn_adj" name="correct_option" value="option_4" <?php if(@$question_details['correct_option'] == 'option_4'){echo "checked";} ?>>
                                         </div>    
                                     </div>
                                     <label id="correct_option-error" class="error" for="correct_option"></label>

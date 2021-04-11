@@ -29,3 +29,11 @@ Route::post('/category','Api\CategoryController@category_list');
 //===================chapter==========================
 Route::post('/question-list','Api\CategoryController@question_list');
 //===================chapter==========================
+
+//=================== Report ====================
+Route::post('/report','Api\CategoryController@submit_result');
+//=================== Report ====================
+
+//=================== view result ====================
+Route::get('/view-result','Api\CategoryController@view_result');
+//=================== view result ====================
